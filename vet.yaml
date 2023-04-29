@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI specification discovered by Traceable
+  version: 1.0.0
+paths:
+  /identity/api/v2/user/verify-email-token:
+    post:
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: x-forwarded-host
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: content-type
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: accept-encoding
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: host
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: cache-control
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: connection
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: postman-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: user-agent
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: content-length
+        in: header
+        required: true
+        schema:
+          type: integer
+      - name: accept
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - new_email
+              - old_email
+              - token
+              type: object
+              properties:
+                old_email:
+                  type: string
+                  format: email
+                token:
+                  type: string
+                new_email:
+                  type: string
+                  format: email
+      responses:
+        "200":
+          description: OK
+          headers:
+            date:
+              required: false
+              schema:
+                type: string
+            server:
+              required: false
+              schema:
+                type: string
+            expires:
+              required: false
+              schema:
+                type: integer
+            transfer-encoding:
+              required: false
+              schema:
+                type: string
+            x-xss-protection:
+              required: false
+              schema:
+                type: string
+            x-content-type-options:
+              required: false
+              schema:
+                type: string
+            vary:
+              required: false
+              schema:
+                type: string
+            x-frame-options:
+              required: false
+              schema:
+                type: string
+            connection:
+              required: false
+              schema:
+                type: string
+            content-type:
+              required: false
+              schema:
+                type: string
+            cache-control:
+              required: false
+              schema:
+                type: string
+            pragma:
+              required: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+      security:
+      - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
