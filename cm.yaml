@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI specification discovered by Traceable
+  version: 1.0.0
+paths:
+  /workshop/api/merchant/contact_mechanic:
+    post:
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: x-forwarded-host
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: accept-encoding
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: host
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: content-type
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: cache-control
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: connection
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: postman-token
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: user-agent
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: x-forwarded-for
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: accept
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: content-length
+        in: header
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - mechanic_api
+              - mechanic_code
+              - number_of_repeats
+              - problem_details
+              - repeat_request_if_failed
+              - vin
+              type: object
+              properties:
+                problem_details:
+                  type: string
+                mechanic_api:
+                  type: string
+                  format: url
+                repeat_request_if_failed:
+                  type: boolean
+                vin:
+                  type: string
+                  x-data-type: VIN
+                number_of_repeats:
+                  type: integer
+                mechanic_code:
+                  type: string
+              x-data-type: VIN
+      responses:
+        "200":
+          description: OK
+          headers:
+            allow:
+              required: false
+              schema:
+                type: string
+            date:
+              required: false
+              schema:
+                type: string
+            content-length:
+              required: false
+              schema:
+                type: integer
+            server:
+              required: false
+              schema:
+                type: string
+            transfer-encoding:
+              required: false
+              schema:
+                type: string
+            vary:
+              required: false
+              schema:
+                type: string
+            x-frame-options:
+              required: false
+              schema:
+                type: string
+            connection:
+              required: false
+              schema:
+                type: string
+            content-type:
+              required: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response_from_mechanic_api:
+                    type: object
+                    properties:
+                      sent:
+                        type: boolean
+                      id:
+                        type: integer
+                      report_link:
+                        type: string
+                        format: url
+                  status:
+                    type: integer
